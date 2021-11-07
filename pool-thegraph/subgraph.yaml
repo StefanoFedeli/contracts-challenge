@@ -1,0 +1,23 @@
+specVersion: 0.0.1
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum/contract
+    name: ETHPool
+    network: ropsten
+    source:
+      address: "0x91d507f1030a1fc60ad6003507897922c323bdb9"
+      abi: ETHPool
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.5
+      language: wasm/assemblyscript
+      entities:
+        - Deposit
+      abis:
+        - name: ETHPool
+          file: ./abis/ETHPool.json
+      callHandlers:
+        - function: deposit()
+        handler: updateDeposit
+      file: ./src/mapping.ts
